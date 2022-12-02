@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <sstream>
 #include <map>
+#include<cstring>
 using namespace std;
 const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
 const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
