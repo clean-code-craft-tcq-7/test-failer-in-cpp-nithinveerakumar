@@ -1,39 +1,38 @@
 #include <iostream>
 #include <assert.h>
+#include <sstream>
 #include <map>
 using namespace std;
 const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
 const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
 
-struct ColorPair
-{
-    const char* majorColor;
-    const char* minorColor;
-};
-
-map <int,ColorPair> printColorMap() {
-    ColorPair colorPair;
-    map <int,ColorPair> colorMap;
+map <int,string> printColorMap() {
+    map <int,string> colorMap;
     int i = 0, j = 0;
     for(i = 0; i < 5; i++) {
         for(j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
-            colorPair.majorColor=majorColor[i];
-            colorPair.minorColor=minorColor[i];
-            colorMap.insert(pair<int, ColorPair>(i * 5 + j,colorPair));
+            std::ostringstream oss;
+            std::cout << i * 5 + j + 1 << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
+            oss<< i * 5 + j + 1 << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
+            cout<<oss.str();
+            colorMap.insert(pair<int,string>(i*5+j+1,oss.str()));
         }
     }
     return colorMap;
 }
 
 int main() {
-    map <int,ColorPair> result = printColorMap();
+    map <int,string> result = printColorMap();
     assert(result.size() == 25);
-    int pairNumber=0; 
-    //test for pairNumber 0
-    assert(result[pairNumber].majorColor==majorColor[0] && result[pairNumber].minorColor==minorColor[0]);
-    pairNumber=1;
-    assert(result[pairNumber].majorColor==majorColor[0] && result[pairNumber].minorColor==minorColor[1]);
+    int pairNumber=1; 
+    //test for pairNumber 1
+    assert(strcmp(result[pairNumber].c_str(),"1 | White | Blue\n")==0);
+    //test for pairNumber 2
+    pairNumber=2;
+    assert(strcmp(result[pairNumber].c_str(),"2 | White | Orange\n")==0);
+    //test for pairNumber 12
+    pairNumber=12;
+    assert(strcmp(result[pairNumber].c_str(),"12 | Black | Orange\n")==0);
     std::cout << "All is well (maybe!)\n";
     return 0;
 }

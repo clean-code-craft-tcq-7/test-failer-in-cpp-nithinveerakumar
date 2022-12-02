@@ -38,9 +38,11 @@ void alertInCelcius(float farenheit,bool isTestEnvironment=false) {
 }
 
 int main() {
-    alertInCelcius(400.5,true);
-    assert(alertFailureCount==0);
-    alertInCelcius(303.6,true);
+    alertInCelcius(400.5,true); // above threshold
+    assert(alertFailureCount==1);
+    alertInCelcius(392,true);//  threshold
+    assert(alertFailureCount==1);
+    alertInCelcius(303.6,true);// below threshold
     assert(alertFailureCount==1);
     std::cout << alertFailureCount << " alerts failed.\n";
     std::cout << "All is well (maybe!)\n";
