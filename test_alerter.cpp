@@ -19,7 +19,7 @@ int main() {
     alertInCelcius(303.6,networkAlerterstub);// below threshold
     assert(alertFailureCount==1);
     alertInCelcius(500.5,networkAlerterstub); // above threshold
-    assert(alertFailureCount=2);
+    assert(alertFailureCount==2);
     std::cout << alertFailureCount << " alerts failed.\n";
     std::cout << "All is well (maybe!)\n";
     return 0;
